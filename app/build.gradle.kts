@@ -22,6 +22,9 @@ jacocoAndroidUnitTestReport {
 
 android {
 
+    dataBinding.isEnabled = true
+    defaultConfig.vectorDrawables.useSupportLibrary = true
+
     defaultConfig {
         compileSdkVersion(Config.compileSdkVersion)
         minSdkVersion(Config.minSdkVersion)
@@ -97,6 +100,8 @@ android {
 }
 
 dependencies {
+    kapt(Libs.UI.databinding)
+
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libs.multidex)
     implementation(Libs.kotlin)
@@ -116,9 +121,14 @@ dependencies {
     implementation(Libs.Network.moshi)
     implementation(Libs.Network.retrofit2ConverterMoshi)
     implementation(Libs.Room.runtime)
+
     kapt(Libs.Room.compiler)
+
     implementation(Libs.Room.ktx)
     implementation(Libs.kotlinCoroutinesAndroid)
+    implementation(Libs.Network.gson)
+    implementation(Libs.Network.jwtdecode)
+
     implementation(Libs.firebase)
     implementation(Libs.multidex)
     implementation(Libs.UI.shimmer)
@@ -135,6 +145,7 @@ dependencies {
     testImplementation(Libs.Test.mockitoInline)
     testImplementation(Libs.Test.koin)
     androidTestImplementation(Libs.Test.espressoCore)
+
 }
 
 apply(from = "../gradle_resources/jacoco.gradle.kts")

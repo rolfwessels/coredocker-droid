@@ -9,3 +9,4 @@ fun BottomNavigationView.getMenuView(): BottomNavigationMenuView =
 
 fun BottomNavigationView.getTabView(position: Int): BottomNavigationItemView =
     this.getMenuView().getChildAt(position) as BottomNavigationItemView
+

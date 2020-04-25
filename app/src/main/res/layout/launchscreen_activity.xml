@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:text="@string/hello_world" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!-- Email Label -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="308dp"
+        android:layout_height="298dp"
+        android:layout_gravity="center"
+        android:paddingTop="24dp"
+        app:srcCompat="@drawable/ic_coredocker_logo"
+        android:transitionName="coredocker_logo"
+        android:contentDescription="Core docker" />
+
+</layout>

@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/tab_inspire_dest">
+    app:startDestination="@id/dashboardFragmentActivity">
+
+    <fragment
+        android:id="@+id/dashboardFragmentActivity"
+        android:name="com.boilerplate.android.base.feature.dashboard.DashboardFragmentActivity"
+        android:label="DashboardFragmentActivity" />
 
     <fragment
         android:id="@+id/tab_inspire_dest"

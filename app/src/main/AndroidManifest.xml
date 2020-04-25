@@ -16,16 +16,14 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
-        <activity
-            android:name="com.boilerplate.android.base.feature.launchscreen.LaunchScreenActivity">
+        <activity android:name="com.boilerplate.android.base.feature.launchscreen.LaunchScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+        <activity android:name="com.boilerplate.android.base.feature.loginscreen.LoginScreenActivity" />
         <activity android:name="com.boilerplate.android.base.feature.HomeActivity" />
     </application>
 </manifest>

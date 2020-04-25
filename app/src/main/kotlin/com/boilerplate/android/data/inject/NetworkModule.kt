@@ -1,7 +1,7 @@
 package com.boilerplate.android.data.inject
 
 import com.boilerplate.android.data.network.NetworkConstants
-import com.boilerplate.android.data.network.category.DummyApi
+import com.boilerplate.android.data.network.category.CoreDockerApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -27,5 +27,5 @@ fun provideRetrofit(client: OkHttpClient): Retrofit {
         .build()
 }
 
-fun provideDummyService(retrofit: Retrofit): DummyApi =
-    retrofit.create(DummyApi::class.java)
+fun provideDummyService(retrofit: Retrofit): CoreDockerApi =
+    retrofit.create(CoreDockerApi::class.java)

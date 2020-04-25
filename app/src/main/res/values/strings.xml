@@ -4,4 +4,9 @@
     <string name="empty_cart_message">Your shopping bag is empty</string>
     <string name="app_name">Boilerplate</string>
     <string name="hello_world">Hello world!</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="email">Email</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

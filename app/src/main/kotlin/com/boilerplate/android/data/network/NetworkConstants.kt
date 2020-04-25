@@ -1,9 +1,8 @@
 package com.boilerplate.android.data.network
 
 object NetworkConstants {
-    const val BASE_URI = "https://dummy.com/api/"
-    const val API_VERSION = "v1/"
-    const val BASE_URL = BASE_URI + API_VERSION
+    const val BASE_URL = "https://api.dev.coredocker.wessels.online/"
+    //const val BASE_URL = "http://10.0.2.2:5000/"
 }
 
 object HeadersContract {

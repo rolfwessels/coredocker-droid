@@ -1,4 +1,6 @@
 private object Versions {
+
+
     const val androidPlugin = "3.3.2"
     const val kotlin = "1.3.41"
     const val kotlinCoroutinesAndroid = "1.3.0-RC"
@@ -21,6 +23,8 @@ private object Versions {
     const val room = "2.1.0"
     const val multidex = "2.0.1"
     const val constraintLayout = "2.0.0-beta2"
+    const val jwtdecode = "2.0.0"
+    const val gson = "2.8.6"
 
     const val androidxTest = "1.2.0"
     const val androidxFragment = "1.1.0-beta01"
@@ -85,6 +89,8 @@ object Libs {
         const val retrofit2ConverterMoshi =
             "com.squareup.retrofit2:converter-moshi:${Versions.retrofit2}"
         const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+        const val gson = "com.google.code.gson:gson:${Versions.gson}"
+        const val jwtdecode = "com.auth0.android:jwtdecode:${Versions.jwtdecode}"
     }
 
     object Room {
@@ -104,8 +110,10 @@ object Libs {
         const val constraintLayout =
             "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
         const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
+        const val databinding = "com.android.databinding:compiler:${Versions.androidPlugin}"
 
     }
+
 
     const val kotlinCoroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesAndroid}"

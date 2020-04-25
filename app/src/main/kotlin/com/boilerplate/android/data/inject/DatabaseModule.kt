@@ -7,7 +7,7 @@ import org.koin.dsl.module.module
 
 val databaseModule = module {
     single { provideAppDatabase(get()) }
-    single { provideDummyDao(get()) }
+    single { provideStoredAuthorization(get()) }
 }
 
 const val DATABASE_NAME = "app_db"
@@ -20,4 +20,4 @@ private fun provideAppDatabase(context: Context): AppDatabase {
     ).build()
 }
 
-private fun provideDummyDao(database: AppDatabase) = database.dummyDao()
+private fun provideStoredAuthorization(database: AppDatabase) = database.storedAuthorization()
