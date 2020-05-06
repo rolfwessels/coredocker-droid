@@ -1,9 +1,9 @@
 package com.coredocker.android.services
+
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import com.coredocker.android.util.SingleLiveEvent
-
 
 class Navigate {
     enum class Location {
@@ -30,16 +30,16 @@ class Navigate {
     fun toUserCreateUpdate(user: com.coredocker.fragment.UserFragment? = null) {
         var bundleOf = bundleOf()
         if (user != null) {
-            bundleOf = bundleOf("id" to user.id,
+            bundleOf = bundleOf(
+                "id" to user.id,
                 "name" to user.name,
                 "email" to user.email,
-                "roles" to user.roles.toTypedArray())
+                "roles" to user.roles.toTypedArray()
+            )
         }
 
-        _currentView.postValue(ToNavData(Location.UserCreateUpdateFragment,bundleOf))
+        _currentView.postValue(ToNavData(Location.UserCreateUpdateFragment, bundleOf))
     }
 
-    class ToNavData (val location : Location, val bundle: Bundle? = null)
-
+    class ToNavData(val location: Location, val bundle: Bundle? = null)
 }
-

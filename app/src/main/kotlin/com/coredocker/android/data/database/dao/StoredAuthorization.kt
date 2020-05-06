@@ -13,5 +13,4 @@ interface StoredAuthorization : BaseDao<Authorization> {
 
     @Query("SELECT * FROM Authorization")
     fun activeSession(): Authorization?
-
 }

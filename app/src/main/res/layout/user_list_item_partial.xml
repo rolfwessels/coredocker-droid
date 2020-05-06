@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="user"
             type="com.coredocker.fragment.UserFragment" />
+
         <variable
             name="viewModel"
             type="com.coredocker.android.views.components.user.UserListFragmentViewModel" />

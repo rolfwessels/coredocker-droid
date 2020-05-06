@@ -1,15 +1,17 @@
 package com.coredocker.android.network.category
 
-
 import com.coredocker.android.data.network.category.CoreDockerApi
 import com.coredocker.android.data.network.graphql.ApiIntegrationTestHelper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.*
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.equalTo
+import org.hamcrest.Matchers.greaterThan
+import org.hamcrest.Matchers.nullValue
+
 import org.junit.Before
 import org.junit.Test
-
 
 @ExperimentalCoroutinesApi
 class CoreDockerApiTest {
@@ -21,7 +23,6 @@ class CoreDockerApiTest {
         apiService = ApiIntegrationTestHelper.retrofitClient
             .create(CoreDockerApi::class.java)
     }
-
 
     @Test
     fun ping_givenValidCall_shouldReturnASuccessfulResult() {

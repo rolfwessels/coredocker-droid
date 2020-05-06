@@ -10,5 +10,4 @@ class LoadingState(
     override fun toString(): String {
         return "LoadingState(isLoading=$isLoading, messages=$messages)"
     }
-
 }

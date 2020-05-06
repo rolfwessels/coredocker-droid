@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import com.coredocker.android.R
 import org.koin.android.ext.android.inject
 
-
 class DashboardFragment : Fragment() {
     private val viewModel: DashboardFragmentViewModel by inject()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +18,4 @@ class DashboardFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.dashboard_fragment, container, false)
     }
-
-
 }

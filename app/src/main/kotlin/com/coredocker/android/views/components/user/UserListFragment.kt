@@ -28,7 +28,6 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-
 class UserFragment : Fragment() {
 
     private val viewModel: UserListFragmentViewModel by inject()
@@ -56,7 +55,7 @@ class UserFragment : Fragment() {
         shimmerLoader = root.findViewById(R.id.sfl_list_of_users)
 
         listOfUsersLayout = LinearLayoutManager(activity)
-        val userListItemPartialAdapter = UserListItemPartialAdapter(null,activity!! , viewModel)
+        val userListItemPartialAdapter = UserListItemPartialAdapter(null, activity!!, viewModel)
         listOfUsersAdapter = userListItemPartialAdapter
 
         lifecycleScope.launch {
@@ -84,7 +83,10 @@ class UserFragment : Fragment() {
         navigate.currentView.observe(this, Observer { n ->
             when (n.location) {
                 Navigate.Location.UserCreateUpdateFragment -> {
-                    navController.navigate(R.id.action_userFragment_to_userCreateUpdateFragment,n.bundle)
+                    navController.navigate(
+                        R.id.action_userFragment_to_userCreateUpdateFragment,
+                        n.bundle
+                    )
                     view.context.hideKeyboard()
                 }
                 else -> throw ArrayIndexOutOfBoundsException("Unknown nav location ${n.location}")
@@ -103,7 +105,6 @@ class UserFragment : Fragment() {
     }
 }
 
-
 class UserListItemPartialAdapter(
     private var data: PagedFragment<UserFragment>? = null,
     private var context: Context,
@@ -113,9 +114,9 @@ class UserListItemPartialAdapter(
 
     inner class Holder(
         private var binding: UserListItemPartialBinding
-    ) : RecyclerView.ViewHolder(binding.root)  , IPassToBing {
+    ) : RecyclerView.ViewHolder(binding.root), IPassToBing {
 
-        fun bind(user : UserFragment) {
+        fun bind(user: UserFragment) {
             binding.user = user
             binding.viewModel = viewModel
             binding.executePendingBindings()
@@ -125,7 +126,6 @@ class UserListItemPartialAdapter(
             return this.binding.user as Any
         }
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -145,14 +145,12 @@ class UserListItemPartialAdapter(
         val stored = data
         if (stored != null) {
             holder.bind(stored.items[position])
-
         }
     }
-
 
     override fun getItemCount() = data?.items?.size ?: 0
 }
 
-interface IPassToBing  {
-    fun getBoundValue() : Any
+interface IPassToBing {
+    fun getBoundValue(): Any
 }

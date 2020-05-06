@@ -50,8 +50,13 @@ jobs:
           java-version: 1.8
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+      - name: Running lint
+        run: ./gradlew lint
+      - name: Running ktlint
+        run: ./gradlew ktcheck
       - name: Build with Gradle
-        run: ./gradlew lint bundleDebug
+        run: ./gradlew bundleDebug
+
 
 
 

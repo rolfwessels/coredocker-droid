@@ -20,6 +20,4 @@ interface CoreDockerApi {
         @Field("grant_type") grant_type: String = "password",
         @Field("scope") scope: String = "api"
     ): Response<LoginResponse>
-
-
 }

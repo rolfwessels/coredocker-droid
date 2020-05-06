@@ -15,14 +15,12 @@ import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Test
 
-
 class UsersApiTest {
 
     private val queryAllResult: PagedFragment<UserFragment> by lazy {
         runBlocking { usersApi.queryAll() }
     }
     private lateinit var usersApi: UsersApi
-
 
     @Before
     fun setUp() {
@@ -54,7 +52,6 @@ class UsersApiTest {
         assertThat(result.count, Matchers.equalTo(result.items.size.toBigInteger()))
     }
 
-
     @Test
     fun addUser_givenValidInput_shouldReturnAnId() = runBlocking {
         // act
@@ -80,7 +77,7 @@ class UsersApiTest {
             it.size > 0
         }
         if (mutableList.size == 0) {
-            //try again for ci
+            // try again for ci
             createRandomUser()
             mutableList.waitTill(10000) {
                 it.size > 0
@@ -88,7 +85,6 @@ class UsersApiTest {
         }
         assertThat(mutableList.size, Matchers.greaterThanOrEqualTo(1))
         assertThat(mutableList.map { it.event }, Matchers.contains("UserCreated"))
-
     }
 
     private suspend fun createRandomUser(): CommandResultFragment {
@@ -97,7 +93,4 @@ class UsersApiTest {
             buildRandomString()
         )
     }
-
-
 }
-

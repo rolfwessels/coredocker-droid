@@ -15,6 +15,7 @@ class LiveDataObserverTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Mock
     lateinit var mockLiveData: MutableLiveData<Any>
 

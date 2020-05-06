@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
-import java.util.*
+import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
 @RunWith(MockitoJUnitRunner::class)

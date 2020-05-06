@@ -14,7 +14,6 @@ import timber.log.Timber
 import java.net.URL
 import java.util.concurrent.TimeUnit
 
-
 val networkModule = module {
     single {
         provideDefaultOkHttpClient()
@@ -48,7 +47,11 @@ fun provideRetrofit(client: OkHttpClient, url: String): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 }
-fun provideApolloClient(url :String,authenticationRepository: AuthenticationRepository ): ApolloClient {
+
+fun provideApolloClient(
+    url: String,
+    authenticationRepository: AuthenticationRepository
+): ApolloClient {
     val client = httpClientWithAuthHeader(
         url,
         getToken = authenticationRepository::currentToken
@@ -72,13 +75,14 @@ fun provideApolloClientFromHttpClient(
 
 fun httpClientWithAuthHeader(
     url: String,
-    getToken : () -> String?
+    getToken: () -> String?
 ): OkHttpClient {
     return OkHttpClient.Builder()
-        .readTimeout(30,TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
         .addInterceptor { chain ->
             val currentToken = getToken()
-            Timber.tag("okHttp").i("Request to $url with token: '${currentToken?.substring(0, 10)}...'")
+            Timber.tag("okHttp")
+                .i("Request to $url with token: '${currentToken?.substring(0, 10)}...'")
             if (currentToken != null) {
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
@@ -103,6 +107,6 @@ private fun LoggingInterceptor(): HttpLoggingInterceptor {
 fun provideCoreDockerApiService(retrofit: Retrofit): CoreDockerApi =
     retrofit.create(CoreDockerApi::class.java)
 
-fun provideCoreUserService(apolloClient: ApolloClient): UsersApi  {
+fun provideCoreUserService(apolloClient: ApolloClient): UsersApi {
     return UsersApi(apolloClient)
 }

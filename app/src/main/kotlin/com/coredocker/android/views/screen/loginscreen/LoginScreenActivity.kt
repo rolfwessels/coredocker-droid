@@ -11,11 +11,9 @@ import com.coredocker.android.services.Navigate
 import com.coredocker.android.views.screen.HomeActivity
 import org.koin.android.ext.android.inject
 
-
 class LoginScreenActivity : AppCompatActivity() {
     private val _viewModel: LoginScreenViewModel by inject()
     private val _navigate: Navigate by inject()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +34,5 @@ class LoginScreenActivity : AppCompatActivity() {
                 else -> throw ArrayIndexOutOfBoundsException("Unknown nav location ${n.location}")
             }
         })
-
     }
 }

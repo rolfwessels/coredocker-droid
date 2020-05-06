@@ -1,12 +1,12 @@
 query AllUsers {
-  users {
-      paged(includeCount:true,sort:"name") {
-      items {
-        ...UserFragment
-      }
-          count
+    users {
+        paged(includeCount:true,sort:"name") {
+            items {
+                ...UserFragment
+            }
+            count
+        }
     }
-  }
 }
 
 mutation UserAdd($user : UserCreateUpdateModelInput!) {
@@ -40,11 +40,11 @@ fragment commandResultFragment on CommandResult {
 }
 
 fragment UserFragment on User {
-  id
-  name
-  email
-  roles
-  activities
-  createDate
-  updateDate
+    id
+    name
+    email
+    roles
+    activities
+    createDate
+    updateDate
 }

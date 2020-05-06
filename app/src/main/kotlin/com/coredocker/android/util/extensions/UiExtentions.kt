@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 
-
 fun View.hideIt() {
     this.visibility = View.GONE
 }
@@ -30,16 +29,16 @@ fun Context.hideKeyboard() {
     }
 }
 
-
 fun <T> Flow<T>.handleErrors(snackBarNotification: SnackBarNotification): Flow<T> = flow {
     try {
         collect { value -> emit(value) }
-    }
-    catch (e: CancellationException) {
+    } catch (e: CancellationException) {
         Timber.w("Cancel on flow: ${e.message}")
-    }
-    catch (e: Throwable) {
+    } catch (e: Throwable) {
         Timber.w("Error on flow: ${e.message}")
-        snackBarNotification.push(e.message?:"Failure",SnackBarNotification.SnackBarMessage.Types.Failure)
+        snackBarNotification.push(
+            e.message ?: "Failure",
+            SnackBarNotification.SnackBarMessage.Types.Failure
+        )
     }
 }

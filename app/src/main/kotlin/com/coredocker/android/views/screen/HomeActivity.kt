@@ -9,7 +9,6 @@ import com.coredocker.android.R
 import com.coredocker.android.services.SnackBarNotification
 import org.koin.android.ext.android.inject
 
-
 class HomeActivity : AppCompatActivity() {
 
     private val _notifications: SnackBarNotification by inject()
@@ -25,5 +24,4 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp() =
         findNavController(R.id.navigation_host_fragment).navigateUp()
-
 }

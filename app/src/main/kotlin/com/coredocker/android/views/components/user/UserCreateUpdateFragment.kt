@@ -15,7 +15,6 @@ import com.coredocker.android.services.Navigate
 import com.coredocker.android.util.extensions.hideKeyboard
 import org.koin.android.ext.android.inject
 
-
 class UserCreateUpdateFragment : Fragment() {
 
     private val _viewModel: UserCreateUpdateFragmentViewModel by inject()
@@ -27,7 +26,7 @@ class UserCreateUpdateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _viewModel.setArguments(arguments!!)
-      val binding = DataBindingUtil.inflate<UserCreateUpdateFragmentBinding>(
+        val binding = DataBindingUtil.inflate<UserCreateUpdateFragmentBinding>(
             inflater,
             R.layout.user_create_update_fragment,
             container,
@@ -51,7 +50,5 @@ class UserCreateUpdateFragment : Fragment() {
                 else -> throw ArrayIndexOutOfBoundsException("Unknown nav location ${n.location}")
             }
         })
-
     }
 }
-

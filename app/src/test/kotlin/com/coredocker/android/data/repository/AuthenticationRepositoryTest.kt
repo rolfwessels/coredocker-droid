@@ -9,7 +9,6 @@ internal class AuthenticationRepositoryTest {
 
     @Before
     fun setUp() {
-
     }
 
     @Test
@@ -19,7 +18,6 @@ internal class AuthenticationRepositoryTest {
 
         // act
         // assert
-        assertThat("asdf",equals("asd1f"))
+        assertThat("asdf", equals("asd1f"))
     }
-
 }

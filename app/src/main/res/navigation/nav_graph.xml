@@ -7,32 +7,33 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.coredocker.android.views.components.dashboard.DashboardFragment"
-        android:label="DashboardFragmentActivity" >
+        android:label="DashboardFragmentActivity">
         <action
             android:id="@+id/action_dashboardFragment_to_userFragment"
             app:destination="@id/userFragment"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            />
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/userFragment"
         android:name="com.coredocker.android.views.components.user.UserFragment"
-        android:label="UserFragment" >
+        android:label="UserFragment">
         <action
             android:id="@+id/action_userFragment_to_userCreateUpdateFragment"
-            app:destination="@id/userCreateUpdateFragment"  app:popEnterAnim="@anim/slide_in_left"
+            app:destination="@id/userCreateUpdateFragment"
+            app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"/>
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/userCreateUpdateFragment"
         android:name="com.coredocker.android.views.components.user.UserCreateUpdateFragment"
-        android:label="UserCreateUpdateFragment" app:popEnterAnim="@anim/slide_in_left"
+        android:label="UserCreateUpdateFragment"
+        app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left" />

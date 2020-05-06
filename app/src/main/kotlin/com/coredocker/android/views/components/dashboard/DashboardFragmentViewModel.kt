@@ -9,6 +9,4 @@ class DashboardFragmentViewModel(
     fun isLoggedIn(): Boolean {
         return dataRepository.isLoggedIn()
     }
-
-
 }

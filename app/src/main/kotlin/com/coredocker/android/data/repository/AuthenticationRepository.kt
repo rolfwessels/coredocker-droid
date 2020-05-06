@@ -13,7 +13,6 @@ class AuthenticationRepository(
 ) {
     private var tokenWithDetails: Authorization? = null
 
-
     @Throws(LoginException::class)
     suspend fun login(email: String, password: String): LoginResponse {
         val response = coreDockerApi.login(
@@ -34,7 +33,8 @@ class AuthenticationRepository(
 
     private fun buildTokenDetails(token: String): Authorization {
         val jwt = JWT(token)
-        return Authorization(1,
+        return Authorization(
+            1,
             token,
             jwt.getClaim("id").asString() ?: "",
             jwt.getClaim("given_name").asString() ?: "",
@@ -54,7 +54,7 @@ class AuthenticationRepository(
         return authorizedUser()?.token
     }
 
-    private fun authorizedUser() : Authorization? {
+    private fun authorizedUser(): Authorization? {
         if (tokenWithDetails == null) {
             tokenWithDetails = storedAuthorization.activeSession()
         }
@@ -63,6 +63,4 @@ class AuthenticationRepository(
         }
         return tokenWithDetails
     }
-
-
 }

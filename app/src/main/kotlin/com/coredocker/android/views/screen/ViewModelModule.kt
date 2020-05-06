@@ -11,7 +11,7 @@ import org.koin.dsl.module.module
 val viewModelModule = module {
     viewModel { LaunchScreenViewModel(get()) }
     viewModel { DashboardFragmentViewModel(get()) }
-    viewModel { LoginScreenViewModel(get(),get(),get()) }
-    viewModel { UserListFragmentViewModel(get(),get(),get()) }
+    viewModel { LoginScreenViewModel(get(), get(), get()) }
+    viewModel { UserListFragmentViewModel(get(), get(), get()) }
     viewModel { UserCreateUpdateFragmentViewModel(get(), get(), get()) }
 }

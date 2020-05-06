@@ -2,7 +2,7 @@ package com.coredocker.android.business.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
+import java.util.Date
 
 @Entity
 data class Authorization(
@@ -27,13 +27,13 @@ data class Authorization(
         return true
     }
 
-     fun expiryDate() : Date {
-         return Date(this.exp * 1000)
-     }
-    fun isExpired() : Boolean {
-        return expiryDate() < Date()
+    fun expiryDate(): Date {
+        return Date(this.exp * 1000)
     }
 
+    fun isExpired(): Boolean {
+        return expiryDate() < Date()
+    }
 
     override fun hashCode(): Int {
         return token.hashCode()

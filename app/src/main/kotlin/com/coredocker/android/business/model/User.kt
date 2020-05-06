@@ -1,6 +1,5 @@
 package com.coredocker.android.business.model
 
-
 class User(
     /**
      * The id of the user.

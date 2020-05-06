@@ -1,8 +1,13 @@
 package com.coredocker.android.data.network.graphql
 
 import com.apollographql.apollo.ApolloClient
-import com.coredocker.android.data.network.*
+import com.coredocker.android.data.network.buildGraphQlUrl
 import com.coredocker.android.data.network.category.LoginResponse
+import com.coredocker.android.data.network.httpClientWithAuthHeader
+import com.coredocker.android.data.network.provideApolloClientFromHttpClient
+import com.coredocker.android.data.network.provideCoreDockerApiService
+import com.coredocker.android.data.network.provideDefaultOkHttpClient
+import com.coredocker.android.data.network.provideRetrofit
 import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -13,14 +18,13 @@ object ApiIntegrationTestHelper {
         buildRetrofit(testUrl)
     }
     val testUrl = "https://api.dev.coredocker.wessels.online/"
-    //val testUrl = "http://localhost:5000/"
+    // val testUrl = "http://localhost:5000/"
     val loginResponse: LoginResponse? by lazy {
         runBlocking {
             loginResponse(testUrl)
         }
     }
     val apolloClient: ApolloClient by lazy { buildClient(testUrl, loginResponse) }
-
 }
 
 private fun buildRetrofit(url: String): Retrofit {
@@ -44,7 +48,6 @@ private suspend fun loginResponse(url: String): LoginResponse? {
         "admin!"
     ).body()
 }
-
 
 private fun buildClient(url: String, user: LoginResponse?): ApolloClient {
     val graphQlUrl = buildGraphQlUrl(url)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Email Label -->
@@ -12,6 +13,6 @@
         app:srcCompat="@drawable/ic_coredocker_logo"
         android:transitionName="coredocker_logo"
         android:contentDescription="@string/app_name"
-        tools:targetApi="lollipop"/>
+        tools:targetApi="lollipop" />
 
 </layout>
