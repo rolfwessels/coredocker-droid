@@ -1,0 +1,50 @@
+query AllUsers {
+  users {
+      paged(includeCount:true,sort:"name") {
+      items {
+        ...UserFragment
+      }
+          count
+    }
+  }
+}
+
+mutation UserAdd($user : UserCreateUpdateModelInput!) {
+    users {
+        create(user:$user) {
+            ...commandResultFragment
+        }
+    }
+}
+
+mutation UserUpdate($id: String!, $user : UserCreateUpdateModelInput!) {
+    users {
+        update(id:$id , user:$user) {
+            ...commandResultFragment
+        }
+    }
+}
+mutation UserRemove($id: String!) {
+    users {
+        remove(id:$id) {
+            ...commandResultFragment
+        }
+    }
+}
+
+
+fragment commandResultFragment on CommandResult {
+    correlationId
+    createdAt
+    id
+}
+
+fragment UserFragment on User {
+  id
+  name
+  email
+  roles
+  activities
+  createDate
+  updateDate
+}

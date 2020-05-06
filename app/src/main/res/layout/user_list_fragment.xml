@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="userViewModel"
+            type="com.coredocker.android.views.components.user.UserListFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        >
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/sfl_list_of_users"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin"
+                android:orientation="vertical">
+                <include layout="@layout/user_list_item_partial" />
+                <include layout="@layout/user_list_item_partial" />
+                <include layout="@layout/user_list_item_partial" />
+                <include layout="@layout/user_list_item_partial" />
+                <include layout="@layout/user_list_item_partial" />
+                <include layout="@layout/user_list_item_partial" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_of_users"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/layout_margin"
+            android:scrollbars="vertical"
+            app:onItemSwipeRight="@{(obj) -> userViewModel.onDeleteTap(obj)}"
+            tools:listitem="@layout/user_list_item_partial" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_user"
+            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:enabled="@{!userViewModel.isLoading}"
+            android:onClick="@{() -> userViewModel.onAddTap()}"
+            app:srcCompat="@drawable/ic_plus_24"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

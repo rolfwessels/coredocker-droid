@@ -7,9 +7,8 @@ buildscript {
     dependencies {
         classpath(Libs.Gradle.androidGradlePlugin)
         classpath(Libs.Gradle.kotlinGradlePlugin)
-        classpath(Libs.Gradle.jacocoGradlePlugin)
         classpath(Libs.Gradle.googleServicesGradlePlugin)
-        classpath(Libs.Gradle.proguard)
+        classpath(Libs.Gradle.graphQl)
         classpath(Libs.Gradle.safeArgs)
     }
 }
@@ -21,3 +20,4 @@ allprojects {
         mavenCentral()
     }
 }
+

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/tab_inspire_dest"
+        android:id="@+id/dashboardFragment"
         android:icon="@drawable/selector_menu_inspire_icon"
         tools:ignore="MenuTitle" />
 
     <item
-        android:id="@+id/tab_categories_dest"
+        android:id="@+id/tab_account_dest"
         android:icon="@drawable/selector_menu_categories_icon"
         tools:ignore="MenuTitle" />
 
@@ -17,7 +17,7 @@
         tools:ignore="MenuTitle" />
 
     <item
-        android:id="@+id/tab_account_dest"
+        android:id="@+id/userFragment"
         android:icon="@drawable/selector_menu_account_icon"
         tools:ignore="MenuTitle" />
 </menu>

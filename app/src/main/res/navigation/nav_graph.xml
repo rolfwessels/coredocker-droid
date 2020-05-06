@@ -1,58 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardFragmentActivity">
+    app:startDestination="@id/userFragment">
 
     <fragment
-        android:id="@+id/dashboardFragmentActivity"
-        android:name="com.boilerplate.android.base.feature.dashboard.DashboardFragmentActivity"
-        android:label="DashboardFragmentActivity" />
-
-    <fragment
-        android:id="@+id/tab_inspire_dest"
-        android:name="com.boilerplate.android.base.feature.navigation.ColoredFragment"
-        tools:layout="@layout/fragment_colored">
-
-        <argument
-            android:name="tab_index"
-            android:defaultValue="0"
-            app:argType="integer" />
+        android:id="@+id/dashboardFragment"
+        android:name="com.coredocker.android.views.components.dashboard.DashboardFragment"
+        android:label="DashboardFragmentActivity" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
     </fragment>
 
     <fragment
-            android:id="@+id/tab_search_dest"
-            android:name="com.boilerplate.android.base.feature.navigation.ColoredFragment"
-            tools:layout="@layout/fragment_colored">
-
-        <argument
-                android:name="tab_index"
-                android:defaultValue="3"
-                app:argType="integer"/>
+        android:id="@+id/userFragment"
+        android:name="com.coredocker.android.views.components.user.UserFragment"
+        android:label="UserFragment" >
+        <action
+            android:id="@+id/action_userFragment_to_userCreateUpdateFragment"
+            app:destination="@id/userCreateUpdateFragment"  app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
-
     <fragment
-            android:id="@+id/tab_cart_dest"
-            android:name="com.boilerplate.android.base.feature.navigation.ColoredFragment"
-            tools:layout="@layout/fragment_colored">
-
-        <argument
-                android:name="tab_index"
-                android:defaultValue="3"
-                app:argType="integer"/>
-    </fragment>
-
-    <fragment
-            android:id="@+id/tab_account_dest"
-            android:name="com.boilerplate.android.base.feature.navigation.ColoredFragment"
-            tools:layout="@layout/fragment_colored">
-
-        <argument
-                android:name="tab_index"
-                android:defaultValue="3"
-                app:argType="integer" />
-    </fragment>
+        android:id="@+id/userCreateUpdateFragment"
+        android:name="com.coredocker.android.views.components.user.UserCreateUpdateFragment"
+        android:label="UserCreateUpdateFragment" app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left" />
 
 
 </navigation>

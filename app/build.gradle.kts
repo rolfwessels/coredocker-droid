@@ -5,20 +5,18 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-    id("jacoco-android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.apollographql.apollo")
 //    id("com.google.gms.google-services")
 }
 
-jacoco {
-    toolVersion = Libs.jacocoToolsVersion
+apollo {
+    generateKotlinModels.set(true)
 }
 
-jacocoAndroidUnitTestReport {
-    csv.enabled(false)
-    html.enabled(true)
-    xml.enabled(true)
-}
+
+
+
 
 android {
 
@@ -35,6 +33,10 @@ android {
         multiDexEnabled = true
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     compileOptions {
         this.sourceCompatibility = JavaVersion.VERSION_1_8
         this.targetCompatibility = JavaVersion.VERSION_1_8
@@ -43,7 +45,7 @@ android {
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
         getByName("debug").java.srcDirs("src/debug/kotlin")
-        getByName("test").java.srcDirs("src/test/kotlin")
+                getByName("test").java.srcDirs("src/test/kotlin")
         getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
     }
 
@@ -81,7 +83,7 @@ android {
     flavorDimensions("default")
     productFlavors {
         create("base") {
-            applicationId = "com.boilerplate.android"
+            applicationId = "com.coredocker.android"
             setDimension("default")
         }
     }
@@ -90,11 +92,6 @@ android {
         unitTests(delegateClosureOf<TestOptions.UnitTestOptions> {
             isIncludeAndroidResources = true
             isReturnDefaultValues = true
-            all(KotlinClosure1<Any, Test>({
-                (this as Test).also { testTask ->
-                    testTask.extensions.getByType(JacocoTaskExtension::class.java).isIncludeNoLocationClasses = true
-                }
-            }, this))
         })
     }
 }
@@ -125,13 +122,20 @@ dependencies {
     kapt(Libs.Room.compiler)
 
     implementation(Libs.Room.ktx)
-    implementation(Libs.kotlinCoroutinesAndroid)
     implementation(Libs.Network.gson)
+    implementation(Libs.Network.graphQl)
+    implementation(Libs.Network.graphQlCoroutines)
     implementation(Libs.Network.jwtdecode)
 
-    implementation(Libs.firebase)
     implementation(Libs.multidex)
     implementation(Libs.UI.shimmer)
+
+    implementation(Libs.Coroutines.kotlinCoroutinesAndroid)
+    implementation(Libs.Coroutines.kotlinCoroutinesCore)
+    implementation(Libs.Coroutines.lifecycleLiveData)
+    implementation(Libs.Coroutines.lifecycleRuntime)
+    implementation(Libs.Coroutines.lifecycleViewModel)
+
 
     testImplementation(Libs.Test.fragment)
     testImplementation(Libs.Test.robolectric)
@@ -146,7 +150,9 @@ dependencies {
     testImplementation(Libs.Test.koin)
     androidTestImplementation(Libs.Test.espressoCore)
 
+    compileOnly("org.jetbrains:annotations:13.0")
+    testCompileOnly("org.jetbrains:annotations:13.0")
+
 }
 
-apply(from = "../gradle_resources/jacoco.gradle.kts")
 apply(from = "../gradle_resources/ktlint.gradle.kts")

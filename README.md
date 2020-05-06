@@ -1,13 +1,28 @@
-### Android Quickstart Template ###
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template)  [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template)  [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template)  [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=sqale_index)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=code_smells)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=daniloleemes_android-jetpack-mvvm-koin-dsl-template&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template)
+# CoreDocker - Android templat
 
-### What is this repository for? ###
 
-Template repository for your awesome project about to start
+## GraphQl
 
-### How to use this? ###
+Download the latest schema
+```cmd
+gradlew downloadApolloSchema -Pcom.apollographql.apollo.endpoint=https://api.dev.coredocker.wessels.online/graphql -Pcom.apollographql.apollo.schema=src/main/graphql/com/coredocker/schema.json
+gradlew downloadApolloSchema -Pcom.apollographql.apollo.endpoint=http://localhost:5000/graphql -Pcom.apollographql.apollo.schema=src/main/graphql/com/coredocker/schema.json
+gradlew generateApolloSources
 
-<a href="https://github.com/daniloleemes/android-jetpack-mvvm-koin-dsl-template/generate"><img src="https://github.com/daniloleemes/android-jetpack-mvvm-koin-dsl-template/blob/master/.github/use%20this%20template.png" height="35"></a>
+```
+
+## What to do when you want to update gradel
+
+Update gradle
+```cmd
+gradlew --version
+gradlew help --warning-mode=all
+gradlew wrapper --gradle-version 5.6
+#gradlew wrapper --gradle-version 6.3 to update the project to 6.3.
+gradlew clean
+gradlew sync
+```
+
 
 ### What does it include? ###
 
@@ -18,6 +33,19 @@ It includes many libraries that make development easier and provides a nice fold
 * :rocket: Jetpack suite
 * :globe_with_meridians: Navigation library
 * :space_invader: Robolectric
+* :space_invader: GraphQl
 * :coffee: Espresso
 
-<a href="https://sonarcloud.io/dashboard?id=daniloleemes_android-jetpack-mvvm-koin-dsl-template"><img src="https://sonarcloud.io/images/project_badges/sonarcloud-black.svg" height=35/></a>
+
+## Todo
+- [X] Add a way to add users
+- [X] Add a way to edit users
+- [X] Add a way to remove users
+
+- [ ] Use storage for users and observe that
+- [ ] Indicator when its loading from web
+ 
+- [ ] Add firebase analytics back into the mix
+- [ ] Setup circle ci or github actions
+- [ ] Logging SUCKS! need something better
+- [ ] Look at deployment

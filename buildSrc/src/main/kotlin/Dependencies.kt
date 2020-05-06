@@ -1,16 +1,14 @@
 private object Versions {
 
-
-    const val androidPlugin = "3.3.2"
-    const val kotlin = "1.3.41"
-    const val kotlinCoroutinesAndroid = "1.3.0-RC"
-    const val jacocoGradlePlugin = "0.1.4"
-    const val jacocoToolsVersion = "0.8.3"
-    const val proguard = "6.1.1"
+    const val androidPlugin = "3.6.0"
+    const val kotlin = "1.3.72"
+    const val kotlinCoroutinesAndroid = "1.3.5"
+    const val lifecycle_version = "2.2.0"
     const val ktLintVersion = "0.31.0"
     const val ktLintHtmlReporter = "0.1.2"
     const val koinAndroid = "1.0.2"
     const val googleServices = "4.3.0"
+    const val graphql = "2.0.0"
     const val firebase = "17.0.0"
     const val shimmer = "0.4.0"
 
@@ -37,14 +35,12 @@ private object Versions {
 
 object Libs {
     object Gradle {
+        const val graphQl = "com.apollographql.apollo:apollo-gradle-plugin:${Versions.graphql}"
         const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidPlugin}"
         const val kotlinGradlePlugin =
             "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        const val jacocoGradlePlugin =
-            "com.dicedmelon.gradle:jacoco-android:${Versions.jacocoGradlePlugin}"
         const val googleServicesGradlePlugin =
             "com.google.gms:google-services:${Versions.googleServices}"
-        const val proguard = "net.sf.proguard:proguard-gradle:${Versions.proguard}"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
     }
 
@@ -86,11 +82,15 @@ object Libs {
         const val loggingInterceptor =
             "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
         const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2}"
+
+        const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
         const val retrofit2ConverterMoshi =
             "com.squareup.retrofit2:converter-moshi:${Versions.retrofit2}"
-        const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+
         const val gson = "com.google.code.gson:gson:${Versions.gson}"
         const val jwtdecode = "com.auth0.android:jwtdecode:${Versions.jwtdecode}"
+        const val graphQl = "com.apollographql.apollo:apollo-runtime:${Versions.graphql}"
+        const val graphQlCoroutines = "com.apollographql.apollo:apollo-coroutines-support:${Versions.graphql}"
     }
 
     object Room {
@@ -111,14 +111,19 @@ object Libs {
             "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
         const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
         const val databinding = "com.android.databinding:compiler:${Versions.androidPlugin}"
+    }
 
+    object Coroutines {
+        const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutinesAndroid}"
+        const val kotlinCoroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesAndroid}"
+
+        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
+        const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_version}"
+        const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle_version}"
     }
 
 
-    const val kotlinCoroutinesAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesAndroid}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-    const val jacocoToolsVersion = Versions.jacocoToolsVersion
     const val firebase = "com.google.firebase:firebase-core:${Versions.firebase}"
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
 }

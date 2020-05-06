@@ -1,12 +1,15 @@
 <resources>
     <!-- Home -->
-    <string name="home_hello_message">Hello %1$s, %2$s</string>
-    <string name="empty_cart_message">Your shopping bag is empty</string>
-    <string name="app_name">Boilerplate</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="no_account_yet_create_one">No account yet? Create one</string>
-    <string name="email">Email</string>
+    <string name="app_name">CoreDocker</string>
     <string name="dashboard">Dashboard</string>
+
+    <!-- Labels -->
+    <string name="password_label">Password</string>
+    <string name="email_label">Email</string>
+    <string name="name_label">Name</string>
+    <string name="role_label">Role</string>
+
+    <!-- Buttons -->
+    <string name="login_button">Login</string>
+    <string name="save_button">Save</string>
 </resources>
