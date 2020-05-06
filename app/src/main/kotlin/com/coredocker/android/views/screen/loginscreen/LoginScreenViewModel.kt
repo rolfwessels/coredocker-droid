@@ -1,6 +1,5 @@
 package com.coredocker.android.views.screen.loginscreen
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coredocker.android.data.repository.AuthenticationRepository
@@ -11,10 +10,8 @@ import com.coredocker.android.util.extensions.default
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.security.auth.login.LoginException
-
-
-private val TAG: String = LoginScreenViewModel::class.java.simpleName
 
 class LoginScreenViewModel (
     private val dataRepository: AuthenticationRepository,
@@ -38,7 +35,7 @@ class LoginScreenViewModel (
                     loadingState =
                         LoadingState(false, mapOf(Pair("password", e.message!!)))
                 } catch (e: Throwable) {
-                    Log.i(TAG, "Error logging in ${e.message}",e)
+                    Timber.e("Error logging in ${e.message}")
                     snackBarNotification.push("Failed to log in. Please try again later.")
                 }
                 pageState.postValue(loadingState)

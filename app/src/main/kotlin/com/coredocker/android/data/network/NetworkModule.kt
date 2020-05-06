@@ -1,6 +1,5 @@
 package com.coredocker.android.data.network
 
-import android.util.Log
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.subscription.WebSocketSubscriptionTransport
 import com.coredocker.android.data.network.category.CoreDockerApi
@@ -11,11 +10,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import timber.log.Timber
 import java.net.URL
 import java.util.concurrent.TimeUnit
 
 
-private val TAG: String = "networkModule"
 val networkModule = module {
     single {
         provideDefaultOkHttpClient()
@@ -79,7 +78,7 @@ fun httpClientWithAuthHeader(
         .readTimeout(30,TimeUnit.SECONDS)
         .addInterceptor { chain ->
             val currentToken = getToken()
-            Log.i(TAG, "Request to $url with token: '${currentToken?.substring(0, 10)}...'")
+            Timber.tag("okHttp").i("Request to $url with token: '${currentToken?.substring(0, 10)}...'")
             if (currentToken != null) {
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()

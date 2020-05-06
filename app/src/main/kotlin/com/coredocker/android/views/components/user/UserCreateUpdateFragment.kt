@@ -16,7 +16,6 @@ import com.coredocker.android.util.extensions.hideKeyboard
 import org.koin.android.ext.android.inject
 
 
-private val TAG: String = UserCreateUpdateFragment::class.java.simpleName
 class UserCreateUpdateFragment : Fragment() {
 
     private val _viewModel: UserCreateUpdateFragmentViewModel by inject()

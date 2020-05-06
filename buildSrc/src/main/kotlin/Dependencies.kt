@@ -1,5 +1,6 @@
 private object Versions {
 
+
     const val androidPlugin = "3.6.0"
     const val kotlin = "1.3.72"
     const val kotlinCoroutinesAndroid = "1.3.5"
@@ -25,6 +26,7 @@ private object Versions {
     const val gson = "2.8.6"
 
     const val androidxTest = "1.2.0"
+    const val timber = "4.7.1"
     const val androidxFragment = "1.1.0-beta01"
     const val espressoCore = "3.1.1"
     const val mockitoInline = "3.0.0"
@@ -55,6 +57,7 @@ object Libs {
         const val navigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
         const val fragment = "androidx.fragment:fragment-ktx:${Versions.androidxFragment}"
+        const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     }
 
     object Test {

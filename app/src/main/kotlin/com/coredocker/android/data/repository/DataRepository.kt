@@ -1,12 +1,10 @@
 package com.coredocker.android.data.repository
 
-import android.util.Log
 import com.coredocker.android.data.network.graphql.PagedFragment
 import com.coredocker.android.data.network.graphql.UsersApi
 import com.coredocker.fragment.UserFragment
 import kotlinx.coroutines.flow.*
-
-private val TAG: String = DataRepository::class.java.simpleName
+import timber.log.Timber
 
 class DataRepository(
     private val usersApi: UsersApi
@@ -16,7 +14,7 @@ class DataRepository(
         emit(queryAll)
         emitAll(usersApi.onDefaultEventSubscription()
             .filter { it.event.startsWith("User") }
-            .onEach { Log.i(TAG, "Event ${it.event}") }
+            .onEach { Timber.i("Event ${it.event}") }
             .map { usersApi.queryAll() })
     }
 

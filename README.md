@@ -33,19 +33,34 @@ It includes many libraries that make development easier and provides a nice fold
 * :rocket: Jetpack suite
 * :globe_with_meridians: Navigation library
 * :space_invader: Robolectric
-* :space_invader: GraphQl
+* :green_book: [GraphQl](https://www.apollographql.com/docs/android)
+* :scroll: [Timber](https://github.com/JakeWharton/timber)
 * :coffee: Espresso
 
+## Logging
+Logging is done using https://github.com/JakeWharton/timber.
+
+For nicer output in logcat update the `settings` > `android logcat`
+```
+Debug: A8CA9E
+Info: 9BDE81
+Warn: E8BF81
+Error: FF6B68
+``` 
 
 ## Todo
 - [X] Add a way to add users
 - [X] Add a way to edit users
 - [X] Add a way to remove users
+- [X] Logging SUCKS! need something better
+- [X] Setup circle ci or github actions
+
 
 - [ ] Use storage for users and observe that
 - [ ] Indicator when its loading from web
- 
+- [ ] Add some graphs on a dashboard
+- [ ] Add integration to get geo location
+- [ ] Add integration to camera to capture QR code or something
 - [ ] Add firebase analytics back into the mix
-- [ ] Setup circle ci or github actions
-- [ ] Logging SUCKS! need something better
+- [ ] Add centralized logging. Could be from firebase.
 - [ ] Look at deployment

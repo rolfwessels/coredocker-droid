@@ -9,10 +9,17 @@ import com.coredocker.android.data.repository.repositoryModule
 import com.coredocker.android.services.servicesModule
 import com.coredocker.android.views.screen.viewModelModule
 import org.koin.android.ext.android.startKoin
+import timber.log.Timber
+import timber.log.Timber.DebugTree
+
 
 class MainApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+        }
         startKoin(
             this,
             listOf(
@@ -23,7 +30,8 @@ class MainApplication : MultiDexApplication() {
                 databaseModule,
                 sharedPreferencesModule,
                 servicesModule
-            )
+            ), logger = org.koin.log.EmptyLogger()
+
         )
     }
 }

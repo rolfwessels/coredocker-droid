@@ -1,7 +1,6 @@
 package com.coredocker.android.views.components.user
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coredocker.android.data.repository.DataRepository
@@ -12,8 +11,8 @@ import com.coredocker.android.util.extensions.default
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
-private val TAG: String = UserCreateUpdateFragmentViewModel::class.java.simpleName
 class UserCreateUpdateFragmentViewModel(
     private val dataRepository: DataRepository,
     private val navigate: Navigate,
@@ -62,7 +61,7 @@ class UserCreateUpdateFragmentViewModel(
                 navigate.toUserList()
                 notification.push("User saved.", SnackBarNotification.SnackBarMessage.Types.Success)
             } catch (e: Throwable) {
-                Log.i(TAG, "Failed to save user ${e.message}",e)
+                Timber.w("Failed to save user ${e.message}")
                 notification.push(
                     e.message ?: "Failed to save user",
                     SnackBarNotification.SnackBarMessage.Types.Failure

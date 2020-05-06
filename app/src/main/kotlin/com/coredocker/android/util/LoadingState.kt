@@ -2,9 +2,7 @@ package com.coredocker.android.util
 
 class LoadingState(
     val isLoading: Boolean = false,
-    val messages: Map<String, String> = emptyMap(),
-    val name: String = "poes"
-
+    val messages: Map<String, String> = emptyMap()
 ) {
     val isValid: Boolean
         get() = messages.isEmpty()

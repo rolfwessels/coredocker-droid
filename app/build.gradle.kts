@@ -109,6 +109,7 @@ dependencies {
     implementation(Libs.Support.navigationFragment)
     implementation(Libs.UI.navigationUi)
     implementation(Libs.Support.fragment)
+    implementation(Libs.Support.timber)
     implementation(Libs.UI.constraintLayout)
     implementation(Libs.Koin.android)
     implementation(Libs.Koin.viewModel)

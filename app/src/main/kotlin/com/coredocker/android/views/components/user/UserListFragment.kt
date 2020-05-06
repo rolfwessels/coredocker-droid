@@ -2,7 +2,6 @@ package com.coredocker.android.views.components.user
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +26,9 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 
-private val TAG: String = UserFragment::class.java.simpleName
 class UserFragment : Fragment() {
 
     private val viewModel: UserListFragmentViewModel by inject()
@@ -62,7 +61,7 @@ class UserFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.allUsers.collect {
-                Log.i(TAG, "setData ${it.items.size}")
+                Timber.i("setData ${it.items.size}")
                 userListItemPartialAdapter.setData(it)
                 shimmerLoader.stopShimmer()
                 shimmerLoader.hideIt()

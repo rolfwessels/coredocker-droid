@@ -1,6 +1,5 @@
 package com.coredocker.android.data.network.graphql
 
-import android.util.Log
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.api.Response
@@ -14,6 +13,7 @@ import com.coredocker.type.UserCreateUpdateModelInput
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
+import timber.log.Timber
 import java.math.BigInteger
 
 
@@ -66,7 +66,7 @@ class UsersApi(
     }
 
     fun onDefaultEventSubscription(): Flow<RealTimeNotificationsMessageFragment> {
-        Log.i(_tag, "Subscribe to onDefaultEventSubscription")
+        Timber.i("Subscribe to onDefaultEventSubscription")
         return _apolloClient.subscribe(OnDefaultEventSubscription())
             .toFlow()
             .filter { it.data != null }
@@ -79,13 +79,13 @@ class UsersApi(
     ) {
         if (!hasData) {
             response.errors?.forEach {
-                Log.e(_tag, "Error: ${it.message}")
+                Timber.e("Error: ${it.message}")
                 throw GraphQlException(it.message)
             }
 
         } else if (response.errors?.any() == true) {
             response.errors!!.forEach {
-                Log.w(_tag, "Warning: ${it.message}")
+                Timber.w("Warning: ${it.message}")
             }
         }
     }
