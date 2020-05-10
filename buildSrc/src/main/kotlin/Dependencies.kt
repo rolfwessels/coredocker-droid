@@ -1,6 +1,8 @@
 private object Versions {
 
 
+
+
     const val androidPlugin = "3.6.0"
     const val kotlin = "1.3.72"
     const val kotlinCoroutinesAndroid = "1.3.5"
@@ -12,6 +14,8 @@ private object Versions {
     const val graphql = "2.0.0"
     const val firebase = "17.0.0"
     const val shimmer = "0.4.0"
+    const val glide = "4.11.0"
+
 
     const val appcompat = "1.0.0"
     const val androidSupport = "1.0.0-rc01"
@@ -19,7 +23,7 @@ private object Versions {
     const val moshi = "1.8.0"
     const val okhttp3 = "3.14.2"
     const val retrofit2 = "2.6.0"
-    const val room = "2.1.0"
+    const val room = "2.2.5"
     const val multidex = "2.0.1"
     const val constraintLayout = "2.0.0-beta2"
     const val jwtdecode = "2.0.0"
@@ -32,6 +36,8 @@ private object Versions {
     const val mockitoInline = "3.0.0"
     const val archCoreTest = "1.1.1"
     const val androidJunit = "1.1.1"
+    const val easyRandom = "4.2.0"
+    const val kluent = "1.61"
     const val robolectric = "4.3"
 }
 
@@ -61,6 +67,7 @@ object Libs {
     }
 
     object Test {
+
         const val runner = "androidx.test:runner:${Versions.androidxTest}"
         const val androidJunit = "androidx.test.ext:junit:${Versions.androidJunit}"
         const val core = "androidx.test:core:${Versions.androidxTest}"
@@ -73,6 +80,8 @@ object Libs {
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutinesAndroid}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+        const val easyRandom = "org.jeasy:easy-random-core:${Versions.easyRandom}"
+        const val kluent = "org.amshove.kluent:kluent:${Versions.kluent}"
     }
 
     object ktLint {
@@ -114,6 +123,7 @@ object Libs {
             "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
         const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
         const val databinding = "com.android.databinding:compiler:${Versions.androidPlugin}"
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     }
 
     object Coroutines {
@@ -127,6 +137,7 @@ object Libs {
 
 
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    const val kotlinreflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
     const val firebase = "com.google.firebase:firebase-core:${Versions.firebase}"
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
 }

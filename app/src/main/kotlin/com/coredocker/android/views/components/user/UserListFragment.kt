@@ -15,13 +15,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.coredocker.android.R
-import com.coredocker.android.data.network.graphql.PagedFragment
+import com.coredocker.android.business.model.User
 import com.coredocker.android.databinding.UserListFragmentBinding
 import com.coredocker.android.databinding.UserListItemPartialBinding
 import com.coredocker.android.services.Navigate
 import com.coredocker.android.util.extensions.hideIt
 import com.coredocker.android.util.extensions.hideKeyboard
-import com.coredocker.fragment.UserFragment
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -57,10 +56,10 @@ class UserFragment : Fragment() {
         listOfUsersLayout = LinearLayoutManager(activity)
         val userListItemPartialAdapter = UserListItemPartialAdapter(null, activity!!, viewModel)
         listOfUsersAdapter = userListItemPartialAdapter
+        viewLifecycleOwner.lifecycleScope.launch {
 
-        lifecycleScope.launch {
             viewModel.allUsers.collect {
-                Timber.i("setData ${it.items.size}")
+                Timber.i("setData ${it.size}")
                 userListItemPartialAdapter.setData(it)
                 shimmerLoader.stopShimmer()
                 shimmerLoader.hideIt()
@@ -106,7 +105,7 @@ class UserFragment : Fragment() {
 }
 
 class UserListItemPartialAdapter(
-    private var data: PagedFragment<UserFragment>? = null,
+    private var data: List<User>? = null,
     private var context: Context,
     private val viewModel: UserListFragmentViewModel
 ) :
@@ -116,7 +115,7 @@ class UserListItemPartialAdapter(
         private var binding: UserListItemPartialBinding
     ) : RecyclerView.ViewHolder(binding.root), IPassToBing {
 
-        fun bind(user: UserFragment) {
+        fun bind(user: User) {
             binding.user = user
             binding.viewModel = viewModel
             binding.executePendingBindings()
@@ -136,7 +135,7 @@ class UserListItemPartialAdapter(
         return Holder(itemBinding)
     }
 
-    fun setData(newData: PagedFragment<UserFragment>) {
+    fun setData(newData: List<User>) {
         this.data = newData
         notifyDataSetChanged()
     }
@@ -144,11 +143,11 @@ class UserListItemPartialAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val stored = data
         if (stored != null) {
-            holder.bind(stored.items[position])
+            holder.bind(stored[position])
         }
     }
 
-    override fun getItemCount() = data?.items?.size ?: 0
+    override fun getItemCount() = data?.size ?: 0
 }
 
 interface IPassToBing {

@@ -7,6 +7,7 @@ import org.koin.dsl.module.module
 val databaseModule = module {
     single { provideAppDatabase(get()) }
     single { provideStoredAuthorization(get()) }
+    single { provideStoredUser(get()) }
 }
 
 const val DATABASE_NAME = "app_db"
@@ -20,3 +21,4 @@ private fun provideAppDatabase(context: Context): AppDatabase {
 }
 
 private fun provideStoredAuthorization(database: AppDatabase) = database.storedAuthorization()
+private fun provideStoredUser(database: AppDatabase) = database.storedUser()

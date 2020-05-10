@@ -6,13 +6,14 @@ import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.coroutines.toFlow
 import com.coredocker.AllUsersQuery
+import com.coredocker.GetUserQuery
 import com.coredocker.OnDefaultEventSubscription
 import com.coredocker.UserAddMutation
 import com.coredocker.UserRemoveMutation
 import com.coredocker.UserUpdateMutation
-import com.coredocker.fragment.CommandResultFragment
+import com.coredocker.fragment.CommandResultDto
 import com.coredocker.fragment.RealTimeNotificationsMessageFragment
-import com.coredocker.fragment.UserFragment
+import com.coredocker.fragment.UserDto
 import com.coredocker.type.UserCreateUpdateModelInput
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
@@ -20,45 +21,48 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.math.BigInteger
 
 class UsersApi(
     private val _apolloClient: ApolloClient
-) {
-    suspend fun queryAll(): PagedFragment<UserFragment> = withContext(IO) {
-
+) : IUsersApi {
+    override suspend fun allUsers(): PagedFragment<UserDto> = withContext(IO) {
         val response = _apolloClient.query(AllUsersQuery()).toDeferred().await()
         validateResponse(response, response.data?.users?.paged != null)
         return@withContext PagedFragment(
-            response.data!!.users.paged.items.map { it -> it!!.fragments.userFragment },
-            BigInteger(response.data!!.users.paged.count.toString())
+            response.data!!.users.paged.items.map { it -> it!!.fragments.userDto },
+            response.data!!.users.paged.count.toInt()
         )
     }
 
-    suspend fun addUser(
+    override suspend fun getUserById(id: String): UserDto = withContext(IO) {
+        val response = _apolloClient.query(GetUserQuery(id)).toDeferred().await()
+        validateResponse(response, response.data?.users?.byId != null)
+        return@withContext response.data!!.users.byId.fragments.userDto
+    }
+
+    override suspend fun addUser(
         name: String,
         email: String,
         password: String?,
-        roles: List<String> = listOf("Guest")
-    ): CommandResultFragment = withContext(IO) {
+        roles: List<String>
+    ): CommandResultDto = withContext(IO) {
 
         val userCreateModel = UserCreateUpdateModelInput(
             email, name, Input.optional(password),
             roles
         )
-
         val response = _apolloClient.mutate(UserAddMutation(userCreateModel)).toDeferred().await()
         validateResponse(response, response.data?.users?.create != null)
-        return@withContext response.data?.users?.create?.fragments!!.commandResultFragment
+        return@withContext response.data?.users?.create?.fragments!!.commandResultDto
     }
 
-    suspend fun updateUser(
+    override suspend fun updateUser(
         id: String,
         name: String,
         email: String,
         password: String?,
         roles: List<String>
-    ): CommandResultFragment = withContext(IO) {
+    ): CommandResultDto = withContext(IO) {
         val userCreateModel = UserCreateUpdateModelInput(
             email, name, Input.optional(password),
             roles
@@ -66,16 +70,16 @@ class UsersApi(
         val response =
             _apolloClient.mutate(UserUpdateMutation(id, userCreateModel)).toDeferred().await()
         validateResponse(response, response.data?.users?.update != null)
-        return@withContext response.data?.users?.update?.fragments!!.commandResultFragment
+        return@withContext response.data?.users?.update?.fragments!!.commandResultDto
     }
 
-    suspend fun removeUser(id: String): CommandResultFragment = withContext(IO) {
+    override suspend fun removeUser(id: String): CommandResultDto = withContext(IO) {
         val response = _apolloClient.mutate(UserRemoveMutation(id)).toDeferred().await()
         validateResponse(response, response.data?.users?.remove != null)
-        return@withContext response.data?.users?.remove?.fragments!!.commandResultFragment
+        return@withContext response.data?.users?.remove?.fragments!!.commandResultDto
     }
 
-    fun onDefaultEventSubscription(): Flow<RealTimeNotificationsMessageFragment> {
+    override fun onDefaultEventSubscription(): Flow<RealTimeNotificationsMessageFragment> {
         Timber.i("Subscribe to onDefaultEventSubscription")
         return _apolloClient.subscribe(OnDefaultEventSubscription())
             .toFlow()

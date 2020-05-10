@@ -12,6 +12,7 @@ import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
+@kotlinx.coroutines.ExperimentalCoroutinesApi
 class MainApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()

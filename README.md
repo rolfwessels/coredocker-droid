@@ -35,6 +35,7 @@ It includes many libraries that make development easier and provides a nice fold
 * :space_invader: Robolectric
 * :green_book: [GraphQl](https://www.apollographql.com/docs/android)
 * :scroll: [Timber](https://github.com/JakeWharton/timber)
+* :art: [glide](https://github.com/bumptech/glide)
 * :coffee: Espresso
 
 ## Logging
@@ -54,13 +55,20 @@ Error: FF6B68
 - [X] Add a way to remove users
 - [X] Logging SUCKS! need something better
 - [X] Setup circle ci or github actions
+- [X] Use storage for users and observe that
 
-
-- [ ] Use storage for users and observe that
-- [ ] Indicator when its loading from web
+- [ ] If authentication fails then we should show login screen.
 - [ ] Add some graphs on a dashboard
-- [ ] Add integration to get geo location
 - [ ] Add integration to camera to capture QR code or something
+- [ ] Indicator when its loading from web
+- [ ] Add integration to get geo location
 - [ ] Add firebase analytics back into the mix
 - [ ] Add centralized logging. Could be from firebase.
 - [ ] Look at deployment
+
+## Developers
+
+Always run the following before adding pull request.
+```
+gradlew lint ktformat ktcheck bundleDebug test
+```

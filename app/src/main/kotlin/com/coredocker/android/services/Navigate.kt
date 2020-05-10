@@ -3,6 +3,7 @@ package com.coredocker.android.services
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
+import com.coredocker.android.business.model.User
 import com.coredocker.android.util.SingleLiveEvent
 
 class Navigate {
@@ -27,14 +28,14 @@ class Navigate {
         _currentView.postValue(ToNavData(Location.UserFragment))
     }
 
-    fun toUserCreateUpdate(user: com.coredocker.fragment.UserFragment? = null) {
+    fun toUserCreateUpdate(user: User? = null) {
         var bundleOf = bundleOf()
         if (user != null) {
             bundleOf = bundleOf(
                 "id" to user.id,
                 "name" to user.name,
                 "email" to user.email,
-                "roles" to user.roles.toTypedArray()
+                "roles" to user.roles!!.toTypedArray()
             )
         }
 

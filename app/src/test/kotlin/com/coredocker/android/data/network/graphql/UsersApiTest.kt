@@ -1,24 +1,26 @@
 package com.coredocker.android.data.network.graphql
 
-import com.coredocker.android.util.buildRandomString
+import com.coredocker.android.util.Randomizer
 import com.coredocker.android.util.extensions.runOnBackground
+import com.coredocker.android.util.extensions.shouldBeCloseTo
 import com.coredocker.android.util.waitTill
-import com.coredocker.fragment.CommandResultFragment
+import com.coredocker.fragment.CommandResultDto
 import com.coredocker.fragment.RealTimeNotificationsMessageFragment
-import com.coredocker.fragment.UserFragment
-import kotlinx.coroutines.InternalCoroutinesApi
+import com.coredocker.fragment.UserDto
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
+import org.amshove.kluent.shouldBeEqualTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Test
+import java.util.Date
 
 class UsersApiTest {
 
-    private val queryAllResult: PagedFragment<UserFragment> by lazy {
-        runBlocking { usersApi.queryAll() }
+    private val queryAllResult: PagedFragment<UserDto> by lazy {
+        runBlocking { usersApi.allUsers() }
     }
     private lateinit var usersApi: UsersApi
 
@@ -49,18 +51,36 @@ class UsersApiTest {
         // act
         val result = queryAllResult
         // assert
-        assertThat(result.count, Matchers.equalTo(result.items.size.toBigInteger()))
+        assertThat(result.count, Matchers.equalTo(result.items.size))
     }
 
     @Test
-    fun addUser_givenValidInput_shouldReturnAnId() = runBlocking {
+    fun crud_givenValidInput_shouldAddUpdateAndRemoveUser() = runBlocking {
+        val user = Randomizer.instance.nextObject(UserDto::class.java)
+        val password = user.id
         // act
-        val result = createRandomUser()
+
+        val resultAdd = usersApi.addUser(user.name, user.email, password)
+        val resultUpdate = usersApi.updateUser(
+            resultAdd.id!!,
+            user.name + " update",
+            user.email,
+            password,
+            listOf("guest")
+        )
+        val resultFindOne = usersApi.getUserById(resultAdd.id!!)
+        val resultRemove = usersApi.removeUser(resultAdd.id!!)
+
         // assert
-        assertThat(result.id, Matchers.not(Matchers.isEmptyOrNullString()))
+        resultAdd.id shouldBeEqualTo resultUpdate.id
+        resultAdd.id shouldBeEqualTo resultRemove.id
+        resultFindOne.name shouldBeEqualTo user.name + " update"
+
+        resultFindOne.createDate.shouldBeCloseTo(Date(), 10000)
+        resultFindOne.updateDate.shouldBeCloseTo(Date(), 10000)
+        return@runBlocking
     }
 
-    @InternalCoroutinesApi
     @Test
     fun onDefaultEventSubscription_whenCalled_shouldSubscribe() = runBlocking {
         // act
@@ -87,10 +107,10 @@ class UsersApiTest {
         assertThat(mutableList.map { it.event }, Matchers.contains("UserCreated"))
     }
 
-    private suspend fun createRandomUser(): CommandResultFragment {
+    private suspend fun createRandomUser(): CommandResultDto {
+        val user = Randomizer.instance.nextObject(UserDto::class.java)
         return usersApi.addUser(
-            "onDefaultEventSubscription", "${buildRandomString()}@asdf.com",
-            buildRandomString()
+            user.name, user.email, user.id
         )
     }
 }

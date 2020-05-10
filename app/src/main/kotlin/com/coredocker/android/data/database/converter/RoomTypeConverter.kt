@@ -1,12 +1,17 @@
 package com.coredocker.android.data.database.converter
 
 import androidx.room.TypeConverter
+import com.coredocker.android.util.fromIsoDateString
+import com.coredocker.android.util.toIsoDateTimeString
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class ListStringTypeConverter {
-
+class RoomTypeConverter {
+    private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
     private var moshi: Moshi = Moshi.Builder().build()
 
     @TypeConverter
@@ -32,5 +37,15 @@ class ListStringTypeConverter {
         val adapter: JsonAdapter<List<String>> = moshi.adapter(parameterizedType)
 
         return adapter.fromJson(s)
+    }
+
+    @TypeConverter
+    fun fromDate(date: Date): String? {
+        return date.toIsoDateTimeString()
+    }
+
+    @TypeConverter
+    fun toDate(stringDate: String): Date {
+        return stringDate.fromIsoDateString()
     }
 }

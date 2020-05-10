@@ -12,11 +12,8 @@ plugins {
 
 apollo {
     generateKotlinModels.set(true)
+    customTypeMapping.set(mapOf("Long" to "java.math.BigInteger","DateTime" to "java.util.Date"))
 }
-
-
-
-
 
 android {
 
@@ -102,6 +99,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libs.multidex)
     implementation(Libs.kotlin)
+    implementation(Libs.kotlinreflect)
     implementation(Libs.Appcompat.appcompat)
     implementation(Libs.Appcompat.preferences)
     implementation(Libs.Appcompat.kotlinCore)
@@ -130,6 +128,7 @@ dependencies {
 
     implementation(Libs.multidex)
     implementation(Libs.UI.shimmer)
+    implementation(Libs.UI.glide)
 
     implementation(Libs.Coroutines.kotlinCoroutinesAndroid)
     implementation(Libs.Coroutines.kotlinCoroutinesCore)
@@ -149,10 +148,12 @@ dependencies {
 
     testImplementation(Libs.Test.mockitoInline)
     testImplementation(Libs.Test.koin)
+    testImplementation(Libs.Test.easyRandom)
+    testImplementation(Libs.Test.kluent)
     androidTestImplementation(Libs.Test.espressoCore)
 
-    compileOnly("org.jetbrains:annotations:13.0")
-    testCompileOnly("org.jetbrains:annotations:13.0")
+    compileOnly("org.jetbrains:annotations:16.0.1")
+    testCompileOnly("org.jetbrains:annotations:16.0.1")
 
 }
 

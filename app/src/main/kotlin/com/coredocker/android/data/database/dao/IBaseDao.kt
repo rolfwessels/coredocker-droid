@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 
 @Dao
-interface BaseDao<T> {
+interface IBaseDao<T> {
 
     /**
      * Insert or Update (Save) one entity, replacing in case of existence

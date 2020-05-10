@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.coredocker.android.business.model.Authorization
 
 @Dao
-interface StoredAuthorization : BaseDao<Authorization> {
+interface StoredAuthorization : IBaseDao<Authorization> {
 
     @Query("SELECT * FROM Authorization")
     fun getAll(): LiveData<List<Authorization>>

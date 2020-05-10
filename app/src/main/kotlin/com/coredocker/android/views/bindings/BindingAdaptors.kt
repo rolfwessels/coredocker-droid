@@ -1,8 +1,12 @@
 package com.coredocker.android.views.bindings
 
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.coredocker.android.R
 import com.coredocker.android.views.components.user.IPassToBing
 
 @BindingAdapter("onItemSwipeLeft", "onItemSwipeRight", requireAll = false)
@@ -52,4 +56,16 @@ fun RecyclerView.setItemSwipeToRecyclerView(
 
 interface OnItemSwipeListener {
     fun onItemSwiped(position: Any)
+}
+
+@BindingAdapter("glideUrl", "glideFallback", requireAll = false)
+fun ImageView.setGlideUrl(
+    glideUrl: String?,
+    glideFallback: Int?
+) {
+    Glide.with(this.context)
+        .load(glideUrl)
+        .fallback(glideFallback ?: R.drawable.ic_menu_account_selected)
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .into(this)
 }
